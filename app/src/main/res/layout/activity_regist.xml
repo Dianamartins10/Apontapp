@@ -1,9 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Regist.RegistActivity">
+    android:orientation="vertical"
 
-</android.support.constraint.ConstraintLayout>
+    >
+
+
+
+    <TextView
+        android:id="@+id/editlogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="200dp"
+        android:text="Apontapp"
+        android:textColor="#009688"
+        android:textSize="30sp"
+        android:textStyle="bold|italic" />
+
+    <EditText
+        android:id="@+id/editName"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:hint="Nome"
+        android:inputType="text"
+
+        />
+
+
+    <EditText
+        android:id="@+id/editEmail"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:hint="Email"
+        android:inputType="text"
+
+        />
+
+    <EditText
+        android:id="@+id/editPass"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:hint="Password"
+        android:inputType="textPassword"
+
+        />
+
+    <EditText
+        android:id="@+id/editPassConfirm"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:hint="Confirmar Password"
+        android:inputType="textPassword"
+
+        />
+
+    <Button
+        android:id="@+id/btn_Regist"
+        android:layout_width="199dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:background="#FF9800"
+        android:hint="btn_Entrar"
+        android:text="Concluir Registo" />
+
+
+
+</LinearLayout>

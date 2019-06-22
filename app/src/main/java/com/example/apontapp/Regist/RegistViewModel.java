@@ -1,9 +1,9 @@
 package com.example.apontapp.Regist;
 
 import android.arch.lifecycle.MutableLiveData;
+import android.arch.lifecycle.ViewModel;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.ViewModel;
 
 import com.example.apontapp.Models.User;
 import com.google.android.gms.tasks.OnCompleteListener;
