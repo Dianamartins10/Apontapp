@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.apontapp.Home.HomeActivity;
+import com.example.apontapp.Products.ProductsActivity;
 import com.example.apontapp.R;
 import com.example.apontapp.Regist.RegistActivity;
 
@@ -40,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
                 switch (resultType){
 
                     case SUCCESS:
-                        startActivity(new Intent(MainActivity.this, HomeActivity.class));
+                        startActivity(new Intent(MainActivity.this, ProductsActivity.class));
                         finish();
                         break;
 
