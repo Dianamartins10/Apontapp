@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
                 switch (resultType){
 
                     case SUCCESS:
-                        startActivity(new Intent(MainActivity.this, ProductsActivity.class));
+                        startActivity(new Intent(MainActivity.this, HomeActivity.class));
                         finish();
                         break;
 
