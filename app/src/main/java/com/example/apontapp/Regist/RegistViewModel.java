@@ -16,7 +16,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class RegistViewModel extends ViewModel {
 
     enum ResultTypeRegist {
-        SUCCESS, ERROR, CHECKBOTH, CHECKEMAIL, CHECKPASS , CHECKPASSCONFIRM,  CHECKNAME, COMPARE, VALIDEMAIL, EXISTEMAIL, CHECKPASSLENGT
+        SUCCESS, ERROR, CHECKBOTH, COMPARE, VALIDEMAIL, EXISTEMAIL, CHECKPASSLENGT
     }
 
     private FirebaseAuth mAuth;
@@ -34,16 +34,8 @@ public class RegistViewModel extends ViewModel {
 
         if (email.isEmpty() || password.isEmpty() || username.isEmpty() || password.isEmpty()) {
             liveData.postValue(ResultTypeRegist.CHECKBOTH);
-        } else if (password.isEmpty()) {
-            liveData.postValue(ResultTypeRegist.CHECKPASS);
-        } else if (password.length()<6) {
+        }else if (password.length()<6) {
             liveData.postValue(ResultTypeRegist.CHECKPASSLENGT);
-        } else if (email.isEmpty()) {
-            liveData.postValue(ResultTypeRegist.CHECKEMAIL);
-        } else if (username.isEmpty()) {
-            liveData.postValue(ResultTypeRegist.CHECKNAME);
-        }else if(passwordConfirm.isEmpty()) {
-            liveData.postValue(ResultTypeRegist.CHECKPASSCONFIRM);
         } else if(!passwordConfirm.equals(password)) {
             liveData.postValue(ResultTypeRegist.COMPARE);
         } else if(!isValid(email)) {

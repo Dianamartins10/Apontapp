@@ -41,22 +41,11 @@ public class RegistActivity extends AppCompatActivity {
                         startActivity(new Intent (RegistActivity.this, HomeActivity.class));
                         finish();
                         break;
-                    case CHECKNAME:
-                        Toast.makeText(RegistActivity.this, "Nome Obrigatório!", Toast.LENGTH_LONG)
-                                .show();
-                    case CHECKEMAIL:
-                        Toast.makeText(RegistActivity.this, "Email Obrigatório!", Toast.LENGTH_LONG)
-                                .show();
-                        break;
-                    case CHECKPASS:
-                        Toast.makeText(RegistActivity.this, "Password Obrigatória!", Toast.LENGTH_LONG)
-                                .show();
-                        break;
                     case CHECKPASSLENGT:
                         Toast.makeText(RegistActivity.this, "A Password Deve Conter no Mínimo 6 Caracteres!", Toast.LENGTH_LONG)
                                 .show();
                         break;
-                    case CHECKPASSCONFIRM:
+                    case COMPARE:
                         Toast.makeText(RegistActivity.this, "As Passwords Não Coincidem!", Toast.LENGTH_LONG)
                                 .show();
                         break;
