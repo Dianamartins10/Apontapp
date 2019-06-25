@@ -1,4 +1,8 @@
 package com.example.apontapp.Home;
 
-public class HomeViewModel {
+import android.arch.lifecycle.ViewModelProviders;
+
+public class HomeViewModel extends ViewModelProviders {
+
+
 }

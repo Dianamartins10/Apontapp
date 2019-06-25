@@ -46,7 +46,7 @@ public class RegistViewModel extends ViewModel {
             mAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
-                    if(!task.isSuccessful()){
+                    if(task.isSuccessful()==true){
                         liveData.postValue(ResultTypeRegist.EXISTEMAIL);
                     }else{
                         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {

@@ -15,16 +15,18 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:textColor="#009688"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="50dp"
         android:text="Apontapp"
         android:textSize="30sp"
         android:textStyle="bold|italic" />
 
     <EditText
         android:id="@+id/editemail"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:layout_marginLeft="105dp"
+        android:layout_marginRight="105dp"
         android:layout_gravity="center"
         android:hint="Email"
         android:inputType="text"
@@ -33,9 +35,11 @@
 
     <EditText
         android:id="@+id/editpwd"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:layout_marginLeft="105dp"
+        android:layout_marginRight="105dp"
         android:layout_gravity="center"
         android:hint="Password"
         android:inputType="textPassword"
@@ -44,20 +48,24 @@
 
     <Button
         android:id="@+id/btn_Login"
-        android:layout_width="118dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="130dp"
+        android:layout_marginRight="130dp"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:background="#FF9800"
         android:hint="btn_Entrar"
         android:text="Entrar" />
 
     <Button
         android:id="@+id/btn_Registar"
-        android:layout_width="187dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
         android:layout_gravity="center"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="25dp"
         android:background="#E26C47"
         android:text="REGISTAR"
         android:textAlignment="center"
