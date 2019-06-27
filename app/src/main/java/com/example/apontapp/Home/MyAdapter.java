@@ -8,10 +8,13 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import com.example.apontapp.R;
 
+import java.util.ArrayList;
+
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
 
-    private String [] dataset;
+    private ArrayList<String> dataset;
+
 
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
@@ -25,7 +28,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     }
 
 
-    public MyAdapter(String[] myDataset){
+    public MyAdapter(ArrayList<String> myDataset){
         dataset=myDataset;
     }
 
@@ -40,11 +43,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position){
-        holder.textView.setText ( dataset[position] );
+        holder.textView.setText(dataset.get(position));
     }
 
     @Override
     public int getItemCount(){
-        return dataset.length;
+        return dataset.size();
     }
 }
