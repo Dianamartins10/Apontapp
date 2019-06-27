@@ -61,14 +61,20 @@ public class HomeActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
                     for (QueryDocumentSnapshot document : task.getResult()) {
-                        Log.d(TAG, document.get ( "listName" ) + " => " + document.getData());
-                        lista.add(document.get("listName").toString());
+                        if(task.getResult ()!=null){
+                            Log.d(TAG, document.get ( "listName" ) + " => " + document.getData());
+                            lista.add(document.get("listName").toString());
+                        }else{
+                            lista.add("Sem listas!");
+                        }
+
+                        //lista.add(document.get("listName").toString());
                     }
 
                     adapter = new MyAdapter(lista);
                     recyclerView.setAdapter ( adapter );
                 } else {
-                    Log.d(TAG, "Error getting documents: ", task.getException());
+                    lista.add("Erro ao obter os dados!");
                 }
             }
         } );

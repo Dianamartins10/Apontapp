@@ -42,11 +42,10 @@ public class RegistViewModel extends ViewModel {
             liveData.postValue(ResultTypeRegist.VALIDEMAIL);
         }else{
             //method that verify if email is already exist
-
             mAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
-                    if(task.isSuccessful()==true){
+                    if(task.isSuccessful()==false){
                         liveData.postValue(ResultTypeRegist.EXISTEMAIL);
                     }else{
                         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
