@@ -1,36 +1,63 @@
 package com.example.apontapp.Home;
 
 
+import android.content.ClipData;
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.example.apontapp.R;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
+public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implements View.OnClickListener {
 
-
+    private String TAG ="RESULTADO:";
     private ArrayList<String> dataset;
+    private Context context;
 
+
+    @Override
+    public void onClick(View v) {
+
+
+    }
 
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
 
         public TextView textView;
+        public TextView buttonViewOption;
 
         public ViewHolder(View v){
             super(v);
             textView = v.findViewById ( R.id.list_row );
+            buttonViewOption= v.findViewById (R.id.textViewOptions);
+
         }
     }
-
 
     public MyAdapter(ArrayList<String> myDataset){
         dataset=myDataset;
     }
+
+    public void setDataset(ArrayList<String> dataset, Context mCtx) {
+
+        this.dataset = dataset;
+        this.context=mCtx;
+    }
+
+
+
 
     @Override
     public MyAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
@@ -42,8 +69,43 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position){
+    public void onBindViewHolder( final ViewHolder holder, final int position){
+
+        holder.getAdapterPosition ();
         holder.textView.setText(dataset.get(position));
+        holder.textView.setOnClickListener ( new View.OnClickListener () {
+            @Override
+            public void onClick(View v) {
+                Log.d ( TAG, dataset.get(position) );
+            }
+        } );
+
+        holder.buttonViewOption.setOnClickListener ( new View.OnClickListener () {
+            @Override
+            public void onClick(View view) {
+                context = view.getContext ();
+                PopupMenu popup = new PopupMenu ( context, holder.buttonViewOption );
+                popup.inflate ( R.menu.options_menu );
+                popup.setOnMenuItemClickListener ( new PopupMenu.OnMenuItemClickListener () {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+
+                            switch (item.getItemId ()){
+                                case R.id.editar:
+
+                                    break;
+
+                                case R.id.apagar:
+
+                                    break;
+                            }
+                            return false;
+                    }
+                } );
+                popup.show ();
+            }
+        } );
+
     }
 
     @Override

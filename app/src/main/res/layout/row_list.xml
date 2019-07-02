@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="70dp"
     android:layout_marginTop="@dimen/fab_margin"
     android:layout_marginLeft="@dimen/fab_margin"
     android:layout_marginRight="@dimen/fab_margin"
     android:layout_marginBottom="@dimen/fab_margin"
-    android:background="#DBDADA">
+    android:background="#F0F0F0"
+    >
 
 
     <TextView
@@ -16,11 +18,22 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/fab_margin"
         android:layout_marginTop="@dimen/fab_margin"
-        android:layout_marginRight="110dp"
+        android:layout_marginRight="80dp"
         android:textSize="20dp"
         android:textColor="#1A1919"
         />
 
+    <TextView
+        android:id="@+id/textViewOptions"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="-50dp"
+        android:layout_marginTop="15dp"
+        android:text="&#8942;"
+
+        android:textStyle="bold"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#000000" />
 
 
 </LinearLayout>

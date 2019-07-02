@@ -2,9 +2,7 @@ package com.example.apontapp.Regist;
 
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
-
 import androidx.annotation.NonNull;
-
 import com.example.apontapp.Models.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -73,7 +71,7 @@ public class RegistViewModel extends ViewModel {
             });
         }
     }
-
+    //method that validate email
     static boolean isValid(String email) {
         String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
         return email.matches(regex);
