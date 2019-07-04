@@ -1,8 +1,8 @@
 package com.example.apontapp.Home;
 
 
-import android.content.ClipData;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,19 +11,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.PopupMenu;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.apontapp.R;
-
-import org.w3c.dom.Text;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implements View.OnClickListener {
 
+    private FirebaseFirestore db;
+    private FirebaseAuth mAtuh;
     private String TAG ="RESULTADO:";
     private ArrayList<String> dataset;
     private Context context;
+
 
 
     @Override
@@ -77,6 +79,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
             @Override
             public void onClick(View v) {
                 Log.d ( TAG, dataset.get(position) );
+
             }
         } );
 
@@ -97,6 +100,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
 
                                 case R.id.apagar:
 
+
                                     break;
                             }
                             return false;
@@ -111,5 +115,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
     @Override
     public int getItemCount(){
         return dataset.size();
+    }
+
+    public void updateDataset(ArrayList<String> newData) {
+        dataset = newData;
+        notifyDataSetChanged ();
     }
 }
