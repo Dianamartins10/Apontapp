@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ResetPassword.ResetPasswordActivity"></activity>
+        <activity android:name=".Spending.SpendingActivity"></activity>
+        <activity android:name=".ResetPassword.ResetPasswordActivity" />
         <activity
             android:name=".ProductsByList.ProductByListActivity"
             android:label="@string/title_activity_product_by_list"

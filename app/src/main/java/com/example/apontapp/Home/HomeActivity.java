@@ -10,11 +10,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.apontapp.Login.MainActivity;
 import com.example.apontapp.NewList.NewListActivity;
 import com.example.apontapp.R;
+import com.example.apontapp.Spending.SpendingActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -90,5 +95,34 @@ public class HomeActivity extends AppCompatActivity {
         //homeViewModel.home(lista);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.action_logout:
+                logoutUser();
+                return true;
+            case R.id.action_gastos:
+                enterGastos();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+    private void enterGastos() {
+        startActivity(new Intent(HomeActivity.this, SpendingActivity.class));
+    }
 
+    private void logoutUser() {
+        startActivity(new Intent(HomeActivity.this, MainActivity.class));
+        FirebaseAuth.getInstance().signOut();
+        finish();
+
+    }
 }
