@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.PopupMenu;
 import android.widget.TextView;
-
+import com.example.apontapp.ProductsByList.ProductByListActivity;
 import com.example.apontapp.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -44,7 +44,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
             super(v);
             textView = v.findViewById ( R.id.list_row );
             buttonViewOption= v.findViewById (R.id.textViewOptions);
-
         }
     }
 
@@ -78,7 +77,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
         holder.textView.setOnClickListener ( new View.OnClickListener () {
             @Override
             public void onClick(View v) {
+                context = v.getContext ();
                 Log.d ( TAG, dataset.get(position) );
+                Intent intent = new Intent ( context, ProductByListActivity.class );
+                context.startActivity ( intent );
 
             }
         } );

@@ -67,8 +67,6 @@ public class NewProductActivity extends AppCompatActivity {
             }
         });
 
-
-
     }
 
     private void createProduct(){
