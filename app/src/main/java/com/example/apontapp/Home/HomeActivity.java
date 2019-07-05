@@ -21,14 +21,14 @@ import com.example.apontapp.NewList.NewListActivity;
 import com.example.apontapp.R;
 import com.example.apontapp.Spending.SpendingActivity;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.FirebaseFirestore;
+
 
 import java.util.ArrayList;
 
 
 
 public class HomeActivity extends AppCompatActivity {
-    
+
     private ArrayList<String> lista = new ArrayList<> ();
     private RecyclerView recyclerView;
     private MyAdapter adapter;

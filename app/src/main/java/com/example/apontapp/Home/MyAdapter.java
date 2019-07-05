@@ -4,7 +4,6 @@ package com.example.apontapp.Home;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,24 +12,18 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import com.example.apontapp.ProductsByList.ProductByListActivity;
 import com.example.apontapp.R;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.FirebaseFirestore;
+
 
 import java.util.ArrayList;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implements View.OnClickListener {
 
-    private FirebaseFirestore db;
-    private FirebaseAuth mAtuh;
-    private String TAG ="RESULTADO:";
+
     private ArrayList<String> dataset;
     private Context context;
 
-
-
     @Override
     public void onClick(View v) {
-
 
     }
 
@@ -59,7 +52,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
 
 
 
-
     @Override
     public MyAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
         View v = LayoutInflater.from ( parent.getContext () )
@@ -78,7 +70,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
             @Override
             public void onClick(View v) {
                 context = v.getContext ();
-                Log.d ( TAG, dataset.get(position) );
+                //Log.d ( TAG, dataset.get(position) );
                 Intent intent = new Intent ( context, ProductByListActivity.class );
                 context.startActivity ( intent );
 

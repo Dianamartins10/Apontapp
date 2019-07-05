@@ -2,19 +2,13 @@ package com.example.apontapp.Home;
 
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
-import android.arch.lifecycle.ViewModelProviders;
 import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class HomeViewModel extends ViewModel {
@@ -30,8 +24,7 @@ public class HomeViewModel extends ViewModel {
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
     private ArrayList<String> listaTemp = new ArrayList<> ();
-    private RecyclerView recyclerView;
-    private RecyclerView.Adapter adapter;
+
 
 
     public HomeViewModel(){mAuth=FirebaseAuth.getInstance ();}
@@ -41,7 +34,7 @@ public class HomeViewModel extends ViewModel {
 
         String user_id= mAuth.getUid ();
 
-        lista.setValue ( new ArrayList<String> (  ) );
+        lista.setValue( new ArrayList<String>());
 
         db=FirebaseFirestore.getInstance ();
         db.collection("lists").whereEqualTo ("user_id",user_id).get().addOnCompleteListener ( new OnCompleteListener<QuerySnapshot> () {
@@ -65,10 +58,5 @@ public class HomeViewModel extends ViewModel {
                 }
             }
         } );
-
     }
-
-
-
-
 }
