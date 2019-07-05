@@ -10,12 +10,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.apontapp.Home.HomeActivity;
 import com.example.apontapp.Products.ProductsActivity;
 import com.example.apontapp.R;
 import com.example.apontapp.Regist.RegistActivity;
+import com.example.apontapp.ResetPassword.ResetPasswordActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText password;
     private Button btn_login;
     private Button btn_regist;
+    private TextView resetPassword;
     private LoginViewModel loginViewModel= null;
 
 
@@ -74,6 +77,16 @@ public class MainActivity extends AppCompatActivity {
         password = findViewById(R.id.editpwd);
         btn_login = findViewById(R.id.btn_Login);
         btn_regist = findViewById(R.id.btn_Registar);
+        resetPassword= findViewById ( R.id.resetPassword );
+
+
+        resetPassword.setOnClickListener ( new View.OnClickListener () {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent (MainActivity.this, ResetPasswordActivity.class );
+                startActivity ( intent );
+            }
+        } );
 
 
         btn_login.setOnClickListener(new View.OnClickListener() {
@@ -98,4 +111,5 @@ public class MainActivity extends AppCompatActivity {
         String passwordN= password.getText().toString();
         loginViewModel.login(emailN,passwordN);
     }
+
 }

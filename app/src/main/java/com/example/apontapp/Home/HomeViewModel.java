@@ -57,8 +57,9 @@ public class HomeViewModel extends ViewModel {
                             lista.setValue ( listaTemp );
                             livedata.postValue ( ResultTypeView.SUCCESS );
                         }
-                        else {
+                        else  {
                             livedata.postValue ( ResultTypeView.ERROR );
+
                         }
                     }
                 }

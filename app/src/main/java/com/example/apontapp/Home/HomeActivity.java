@@ -64,13 +64,6 @@ public class HomeActivity extends AppCompatActivity {
         adapter = new MyAdapter(lista);
         recyclerView.setAdapter ( adapter );
 
-        ArrayList<String> soparatestarxd = new ArrayList<> ( );
-
-        soparatestarxd.add ( "teste" );
-        soparatestarxd.add ( "teste123" );
-        soparatestarxd.add ( "teste321" );
-
-        adapter.updateDataset ( soparatestarxd );
 
         homeViewModel = ViewModelProviders.of(this).get (HomeViewModel.class);
 
