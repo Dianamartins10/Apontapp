@@ -14,11 +14,12 @@ import java.util.ArrayList;
 public class HomeViewModel extends ViewModel {
 
     enum ResultTypeView {
-        SUCCESS, ERROR
+        SUCCESS, ERROR, LOGOUT
     }
 
     MutableLiveData<ResultTypeView> livedata = new MutableLiveData<> ();
     MutableLiveData<ArrayList<String>> lista = new MutableLiveData<> ();
+    MutableLiveData<ResultTypeView> logout = new MutableLiveData<> ();
 
 
     private FirebaseAuth mAuth;
@@ -28,6 +29,11 @@ public class HomeViewModel extends ViewModel {
 
 
     public HomeViewModel(){mAuth=FirebaseAuth.getInstance ();}
+
+    public void logout(){
+        FirebaseAuth.getInstance().signOut();
+        livedata.postValue ( ResultTypeView.LOGOUT );
+    }
 
     public void home(){
         mAuth= FirebaseAuth.getInstance();
@@ -59,5 +65,7 @@ public class HomeViewModel extends ViewModel {
                 }
             }
         } );
+
+
     }
 }

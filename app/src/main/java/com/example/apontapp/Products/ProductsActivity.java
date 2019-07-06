@@ -63,7 +63,7 @@ public class ProductsActivity extends AppCompatActivity {
                 switch (resultTypeListProd){
                     case SUCCESS:
 
-
+                    break;
                     case ERROR:
                         Toast.makeText(ProductsActivity.this, "Não Existem Produtos", Toast.LENGTH_LONG)
                                 .show();
