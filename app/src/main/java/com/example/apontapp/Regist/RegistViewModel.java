@@ -8,8 +8,14 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.Objects;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 public class RegistViewModel extends ViewModel {
 
@@ -18,6 +24,7 @@ public class RegistViewModel extends ViewModel {
     }
 
     private FirebaseAuth mAuth;
+    private FirebaseUser user;
     MutableLiveData<RegistViewModel.ResultTypeRegist> liveData = new MutableLiveData<>();
 
     private FirebaseFirestore db;
@@ -30,6 +37,7 @@ public class RegistViewModel extends ViewModel {
 
         mAuth= FirebaseAuth.getInstance();
 
+
         if (email.isEmpty() || password.isEmpty() || username.isEmpty() || password.isEmpty()) {
             liveData.postValue(ResultTypeRegist.CHECKBOTH);
         }else if (password.length()<6) {
@@ -37,20 +45,13 @@ public class RegistViewModel extends ViewModel {
         } else if(!passwordConfirm.equals(password)) {
             liveData.postValue(ResultTypeRegist.COMPARE);
         } else if(!isValid(email)) {
-            liveData.postValue(ResultTypeRegist.VALIDEMAIL);
+            liveData.postValue ( ResultTypeRegist.VALIDEMAIL );
         }else{
-            //method that verify if email is already exist
-            mAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
-                @Override
-                public void onComplete(@NonNull Task<Void> task) {
-                    if(task.isSuccessful()==false){
-                        liveData.postValue(ResultTypeRegist.EXISTEMAIL);
-                    }else{
                         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (!task.isSuccessful()) {
-                                    liveData.postValue(ResultTypeRegist.ERROR);
+                                    liveData.postValue ( ResultTypeRegist.ERROR );
 
                                 } else {
                                     liveData.postValue(ResultTypeRegist.SUCCESS);
@@ -68,9 +69,9 @@ public class RegistViewModel extends ViewModel {
                         });
                     }
                 }
-            });
-        }
-    }
+
+
+
     //method that validate email
     static boolean isValid(String email) {
         String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";

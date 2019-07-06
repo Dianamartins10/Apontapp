@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.example.apontapp.R;
@@ -20,8 +21,8 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
         public TextView textViewName;
-        public TextView textViewCategory;
         public TextView buttonAdd;
+        public CheckBox checkBox;
 
 
 
@@ -30,6 +31,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
             super(v);
             textViewName = v.findViewById ( R.id.list_row_nameproduct );
             buttonAdd= v.findViewById ( R.id.btnViewAdd );
+            checkBox=v.findViewById ( R.id.btnViewAdd );
         }
     }
 
@@ -47,11 +49,19 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.getAdapterPosition ();
         holder.textViewName.setText ( datasetprod.get(position));
-
-        // aqui é onde vais adicionar a ação do teu botão
+        holder.textViewName.setOnClickListener ( new View.OnClickListener () {
+            @Override
+            public void onClick(View v) {
+                if(holder.checkBox.isChecked ()){
+                    holder.checkBox.setChecked ( false );
+                }else{
+                    holder.checkBox.setChecked ( true );
+                }
+            }
+        } );
     }
 
     @Override

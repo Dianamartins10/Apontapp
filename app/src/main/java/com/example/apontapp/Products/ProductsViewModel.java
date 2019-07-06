@@ -24,6 +24,7 @@ public class ProductsViewModel extends ViewModel {
 
     MutableLiveData<ResultTypeListProd> livedata = new MutableLiveData<>();
     MutableLiveData<ArrayList<String>> name = new MutableLiveData<> ();
+    MutableLiveData<ArrayList<String>> category= new MutableLiveData<> ();
 
 
 
@@ -61,8 +62,5 @@ public class ProductsViewModel extends ViewModel {
                 }
             }
         } );
-
-
     }
-
 }

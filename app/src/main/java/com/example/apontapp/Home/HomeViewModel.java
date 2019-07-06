@@ -41,6 +41,7 @@ public class HomeViewModel extends ViewModel {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful ()) {
+                    //noinspection ConstantConditions
                     for (QueryDocumentSnapshot document : task.getResult ()) {
                         listaTemp = lista.getValue ();
 
