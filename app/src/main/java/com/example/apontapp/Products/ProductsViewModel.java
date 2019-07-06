@@ -6,9 +6,11 @@ import android.support.annotation.NonNull;
 import android.arch.lifecycle.ViewModel;
 import android.util.Log;
 
+import com.example.apontapp.Models.Product;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -45,13 +47,16 @@ public class ProductsViewModel extends ViewModel {
 
         db=FirebaseFirestore.getInstance ();
 
-        db.collection ( "products" ).orderBy ( "category" ).get().addOnCompleteListener ( new OnCompleteListener<QuerySnapshot> () {
+
+        db.collection ( "products" ).whereEqualTo ("user_id","").get().addOnCompleteListener ( new OnCompleteListener<QuerySnapshot> () {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 for (QueryDocumentSnapshot document : task.getResult ()) {
 
                     listaTemp= name.getValue ();
                     if (task.isSuccessful ()) {
+
+
                         Log.d (TAG, "RESULTADO: " + listaTemp);
                         listaTemp.add ( String.valueOf ( document.get ( "name" ) ) );
                         ProductsViewModel.this.name.setValue ( listaTemp );
@@ -62,5 +67,27 @@ public class ProductsViewModel extends ViewModel {
                 }
             }
         } );
+
+        db.collection ( "products" ).whereEqualTo ("user_id",user_id).get().addOnCompleteListener ( new OnCompleteListener<QuerySnapshot> () {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                for (QueryDocumentSnapshot document : task.getResult ()) {
+
+                    listaTemp= name.getValue ();
+                    if (task.isSuccessful ()) {
+
+
+                        Log.d (TAG, "RESULTADO: " + listaTemp);
+                        listaTemp.add ( String.valueOf ( document.get ( "name" ) ) );
+                        ProductsViewModel.this.name.setValue ( listaTemp );
+                        livedata.postValue ( ResultTypeListProd.SUCCESS );
+                    }else{
+                        livedata.postValue ( ResultTypeListProd.ERROR );
+                    }
+                }
+            }
+        } );
+
     }
+
 }

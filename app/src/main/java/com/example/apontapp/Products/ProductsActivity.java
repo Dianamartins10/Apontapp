@@ -11,6 +11,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.apontapp.NewProduct.NewProductActivity;
@@ -25,6 +26,7 @@ public class ProductsActivity extends AppCompatActivity {
     private ProductsAdapter productsAdapter;
     private RecyclerView.LayoutManager layoutManager;
     private ProductsViewModel productsViewModel=null;
+    public Button addProductToList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +63,6 @@ public class ProductsActivity extends AppCompatActivity {
                 switch (resultTypeListProd){
                     case SUCCESS:
 
-                        break;
 
                     case ERROR:
                         Toast.makeText(ProductsActivity.this, "Não Existem Produtos", Toast.LENGTH_LONG)
@@ -78,6 +79,18 @@ public class ProductsActivity extends AppCompatActivity {
             }
         } );
 
+//////////////////////////
+        addProductToList = findViewById(R.id.btn_AddProductToList);
+        addProductToList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addProductToList();
+            }
+        });
+
     }
 
+    private void addProductToList(){
+
+    }
 }
