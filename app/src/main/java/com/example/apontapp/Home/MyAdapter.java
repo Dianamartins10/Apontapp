@@ -10,8 +10,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+
+import com.example.apontapp.EditList.EditListActivity;
 import com.example.apontapp.ProductsByList.ProductByListActivity;
 import com.example.apontapp.R;
+import com.google.firestore.v1.WriteResult;
 
 
 import java.util.ArrayList;
@@ -89,7 +92,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
 
                             switch (item.getItemId ()){
                                 case R.id.editar:
-
+                                    Intent intent = new Intent ( context, EditListActivity.class );
+                                    context.startActivity ( intent );
                                     break;
 
                                 case R.id.apagar:
