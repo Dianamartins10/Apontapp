@@ -10,12 +10,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.apontapp.Home.HomeActivity;
+import com.example.apontapp.Login.MainActivity;
 import com.example.apontapp.NewProduct.NewProductActivity;
 import com.example.apontapp.R;
+import com.example.apontapp.Spending.SpendingActivity;
 
 import java.util.ArrayList;
 
@@ -79,6 +85,7 @@ public class ProductsActivity extends AppCompatActivity {
             }
         } );
 
+
 //////////////////////////
         addProductToList = findViewById(R.id.btn_AddProductToList);
         addProductToList.setOnClickListener(new View.OnClickListener() {
@@ -87,6 +94,37 @@ public class ProductsActivity extends AppCompatActivity {
                 addProductToList();
             }
         });
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.action_logout:
+                logoutUser();
+                return true;
+            case R.id.action_gastos:
+                enterGastos();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+    private void enterGastos() {
+        startActivity(new Intent(ProductsActivity.this, SpendingActivity.class));
+    }
+
+    private void logoutUser() {
+        startActivity(new Intent(ProductsActivity.this, MainActivity.class));
+        productsViewModel.logout ();
+        finish();
 
     }
 

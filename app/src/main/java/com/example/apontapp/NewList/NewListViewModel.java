@@ -13,15 +13,21 @@ import java.util.ArrayList;
 public class NewListViewModel extends ViewModel {
 
     enum ResultTypeList{
-        SUCCESS, CHECKNAME
+        SUCCESS, CHECKNAME, LOGOUT
     }
 
     private FirebaseAuth mAuth;
     MutableLiveData<ResultTypeList> livedata = new MutableLiveData<>();
+    MutableLiveData<ResultTypeList> logout = new MutableLiveData<> ();
     private FirebaseFirestore db;
 
     public NewListViewModel(){
         mAuth = FirebaseAuth.getInstance();
+    }
+
+    public void logout(){
+        FirebaseAuth.getInstance().signOut();
+        livedata.postValue ( ResultTypeList.LOGOUT );
     }
 
 

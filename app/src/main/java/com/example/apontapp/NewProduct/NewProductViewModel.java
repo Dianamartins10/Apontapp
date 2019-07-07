@@ -11,12 +11,18 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class NewProductViewModel extends ViewModel {
 
     enum ResultTypeProduct{
-        SUCCESS, CHECKNAME, CHECKCATEGORY, CHECKBOTH
+        SUCCESS, CHECKNAME, CHECKCATEGORY, CHECKBOTH, LOGOUT
     }
 
     private FirebaseAuth mAuth;
     MutableLiveData<ResultTypeProduct> livedata = new MutableLiveData<>();
+    MutableLiveData<ResultTypeProduct> logout = new MutableLiveData<> ();
     private FirebaseFirestore db;
+
+    public void logout(){
+        FirebaseAuth.getInstance().signOut();
+        livedata.postValue ( ResultTypeProduct.LOGOUT );
+    }
 
     public void createProduct (final String name, final String category){
         mAuth= FirebaseAuth.getInstance();

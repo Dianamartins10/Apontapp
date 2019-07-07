@@ -1,18 +1,24 @@
 package com.example.apontapp.NewProduct;
 
+import android.app.Activity;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.apontapp.Login.MainActivity;
 import com.example.apontapp.Products.ProductsActivity;
 import com.example.apontapp.R;
+import com.example.apontapp.Spending.SpendingActivity;
 
 public class NewProductActivity extends AppCompatActivity {
     public EditText nameProduct;
@@ -73,5 +79,36 @@ public class NewProductActivity extends AppCompatActivity {
         String name = nameProduct.getText().toString();
         String category = categoryProduct.getText().toString();
         newProductViewModel.createProduct(name,category);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.action_logout:
+                logoutUser();
+                return true;
+            case R.id.action_gastos:
+                enterGastos();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+    private void enterGastos() {
+        startActivity(new Intent(NewProductActivity.this, SpendingActivity.class));
+    }
+
+    private void logoutUser() {
+        startActivity(new Intent(NewProductActivity.this, MainActivity.class));
+        newProductViewModel.logout ();
+        finish();
+
     }
 }

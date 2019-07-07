@@ -21,13 +21,13 @@ import java.util.ArrayList;
 
 public class ProductsViewModel extends ViewModel {
     enum ResultTypeListProd{
-        SUCCESS, ERROR
+        SUCCESS, ERROR, LOGOUT
     }
 
     MutableLiveData<ResultTypeListProd> livedata = new MutableLiveData<>();
     MutableLiveData<ArrayList<String>> name = new MutableLiveData<> ();
     MutableLiveData<ArrayList<String>> category= new MutableLiveData<> ();
-
+    MutableLiveData<ResultTypeListProd> logout = new MutableLiveData<> ();
 
 
     private FirebaseAuth mAuth;
@@ -36,6 +36,11 @@ public class ProductsViewModel extends ViewModel {
     private ArrayList<String> listaTemp = new ArrayList<> ();
 
     public ProductsViewModel(){mAuth=FirebaseAuth.getInstance ();}
+
+    public void logout(){
+        FirebaseAuth.getInstance().signOut();
+        livedata.postValue ( ResultTypeListProd.LOGOUT );
+    }
 
     public void products(){
 
