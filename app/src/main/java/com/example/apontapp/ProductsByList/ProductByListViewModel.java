@@ -72,13 +72,7 @@ public class ProductByListViewModel extends ViewModel {
                         Log.d (TAG, "RESULTADO: " + listaTemp);
                         String[] tempItems = String.valueOf ( document.get ( "products" ) ).split(", ");
                         for (int i = 0, size = tempItems.length; i < size; i++) {
-                            if (i == 0) {
-                                listaTemp.add((tempItems[i]).substring(1));
-                            } else if (i == size -1) {
-                                listaTemp.add((tempItems[i]).substring(0, tempItems[i].length() - 1));
-                            } else {
-                                listaTemp.add((tempItems[i]));
-                            }
+                            listaTemp.add(tempItems[i].replace("[", "").replace("]", ""));
                         }
 
                         ProductByListViewModel.this.name.setValue ( listaTemp );

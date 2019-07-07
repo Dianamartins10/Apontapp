@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
@@ -31,11 +33,13 @@ public class MyAdapter extends RecyclerView.Adapter<com.example.apontapp.Spendin
 
         public TextView textView;
         public TextView buttonViewOption;
+        public EditText listprice;
 
         public ViewHolder(View v){
             super(v);
             textView = v.findViewById ( R.id.list_row );
             buttonViewOption= v.findViewById (R.id.textViewOptions);
+            listprice = v.findViewById(R.id.listprice);
         }
     }
 
