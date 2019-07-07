@@ -14,7 +14,6 @@ import android.widget.TextView;
 import com.example.apontapp.EditList.EditListActivity;
 import com.example.apontapp.ProductsByList.ProductByListActivity;
 import com.example.apontapp.R;
-import com.google.firestore.v1.WriteResult;
 
 
 import java.util.ArrayList;

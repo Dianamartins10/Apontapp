@@ -20,7 +20,9 @@ import com.example.apontapp.Login.MainActivity;
 import com.example.apontapp.NewList.NewListActivity;
 import com.example.apontapp.R;
 import com.example.apontapp.Spending.SpendingActivity;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
 
 
 import java.util.ArrayList;
@@ -42,7 +44,6 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -89,6 +90,8 @@ public class HomeActivity extends AppCompatActivity {
                 adapter.updateDataset(strings);
             }
         } );
+
+
     }
 
     public void list(){
@@ -125,4 +128,6 @@ public class HomeActivity extends AppCompatActivity {
         finish();
 
     }
+
+
 }
