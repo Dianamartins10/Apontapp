@@ -1,9 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Spending.SpendingActivity">
+    tools:context=".Spending.SpendingActivity"
+    >
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+    android:id="@+id/nolists"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:text="Ainda não contém listas! Clique no botão para adicionar uma nova lista!"
+    android:gravity="center"
+    android:textAlignment="center"
+    android:visibility="invisible"/>
+
+
+
+<android.support.v7.widget.RecyclerView
+    android:layout_marginTop="60dp"
+    android:layout_marginBottom="50dp"
+    android:id="@+id/recyclerview"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Calcular"
+        android:layout_gravity="bottom|center"
+        android:background="#E09A0E"
+        android:layout_margin="@dimen/fab_margin"/>
+
+
+</android.support.design.widget.CoordinatorLayout>
