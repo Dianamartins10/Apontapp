@@ -124,6 +124,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private void logoutUser() {
         startActivity(new Intent(HomeActivity.this, MainActivity.class));
+
         homeViewModel.logout ();
         finish();
 

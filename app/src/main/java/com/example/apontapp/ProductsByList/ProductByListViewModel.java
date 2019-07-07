@@ -53,13 +53,14 @@ public class ProductByListViewModel extends ViewModel {
         mAuth= FirebaseAuth.getInstance();
 
         String user_id= mAuth.getUid ();
+        String test = ProductByListActivity.namelist;
 
         name.setValue(new ArrayList<String>());
 
         db=FirebaseFirestore.getInstance ();
 
 
-        db.collection ( "lists" ).whereEqualTo ("user_id",user_id).get().addOnCompleteListener ( new OnCompleteListener<QuerySnapshot> () {
+        db.collection ( "lists" ).whereEqualTo ("user_id",user_id).whereEqualTo("listName",test).get().addOnCompleteListener ( new OnCompleteListener<QuerySnapshot> () {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 for (QueryDocumentSnapshot document : task.getResult ()) {
@@ -69,7 +70,17 @@ public class ProductByListViewModel extends ViewModel {
 
 
                         Log.d (TAG, "RESULTADO: " + listaTemp);
-                        listaTemp.add ( String.valueOf ( document.get ( "products" ) ) );
+                        String[] tempItems = String.valueOf ( document.get ( "products" ) ).split(", ");
+                        for (int i = 0, size = tempItems.length; i < size; i++) {
+                            if (i == 0) {
+                                listaTemp.add((tempItems[i]).substring(1));
+                            } else if (i == size -1) {
+                                listaTemp.add((tempItems[i]).substring(0, tempItems[i].length() - 1));
+                            } else {
+                                listaTemp.add((tempItems[i]));
+                            }
+                        }
+
                         ProductByListViewModel.this.name.setValue ( listaTemp );
                         livedata.postValue ( ProductByListViewModel.ResultTypeListProd.SUCCESS );
                     }else{

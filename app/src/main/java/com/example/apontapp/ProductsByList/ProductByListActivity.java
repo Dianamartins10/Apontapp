@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -28,6 +29,7 @@ import java.util.ArrayList;
 
 public class ProductByListActivity extends AppCompatActivity {
 
+    public static String namelist;
     private ArrayList<String> list = new ArrayList<> ();
     private RecyclerView recyclerView;
     private ProductByListAdapter productByListAdapter;
@@ -49,6 +51,9 @@ public class ProductByListActivity extends AppCompatActivity {
                 startActivity ( intent );
             }
         } );
+
+        Intent i = getIntent();
+        namelist = i.getStringExtra("name");
 
         recyclerView= findViewById ( R.id.recyclerviewproducts );
         recyclerView.setHasFixedSize ( true );

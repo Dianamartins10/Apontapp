@@ -1,7 +1,10 @@
 package com.example.apontapp.ProductsByList;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,6 +54,7 @@ public class ProductByListAdapter extends RecyclerView.Adapter<ProductByListAdap
     public void onBindViewHolder(final ProductByListAdapter.ViewHolder holder, int position) {
         holder.getAdapterPosition ();
         holder.textViewName.setText ( datasetprod.get(position));
+
         holder.textViewName.setOnClickListener ( new View.OnClickListener () {
             @Override
             public void onClick(View v) {

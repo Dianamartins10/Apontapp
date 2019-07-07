@@ -4,6 +4,7 @@ package com.example.apontapp.Home;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -73,8 +74,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
             public void onClick(View v) {
                 context = v.getContext ();
                 //Log.d ( TAG, dataset.get(position) );
-                Intent intent = new Intent ( context, ProductByListActivity.class );
-                context.startActivity ( intent );
+
+                Intent i = new Intent ( context, ProductByListActivity.class );
+                i.putExtra("name", dataset.get(position));
+                context.startActivity ( i );
 
             }
         } );
@@ -92,6 +95,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
                             switch (item.getItemId ()){
                                 case R.id.editar:
                                     Intent intent = new Intent ( context, EditListActivity.class );
+                                    intent.putExtra("name", dataset.get(position));
                                     context.startActivity ( intent );
                                     break;
 
