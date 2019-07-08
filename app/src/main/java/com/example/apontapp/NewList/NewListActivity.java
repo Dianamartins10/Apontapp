@@ -97,6 +97,7 @@ public class NewListActivity extends AppCompatActivity {
     }
 
     private void logoutUser() {
+        finishAffinity();
         startActivity(new Intent(NewListActivity.this, MainActivity.class));
         newListViewModel.logout ();
         finish();

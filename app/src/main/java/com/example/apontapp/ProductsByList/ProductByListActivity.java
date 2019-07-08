@@ -118,6 +118,7 @@ public class ProductByListActivity extends AppCompatActivity {
     }
 
     private void logoutUser() {
+        finishAffinity();
         startActivity(new Intent(ProductByListActivity.this, MainActivity.class));
         productByListViewModel.logout ();
         finish();

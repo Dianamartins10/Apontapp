@@ -133,6 +133,7 @@ public class HomeActivity extends AppCompatActivity {
 
     //method that calls logout in viewmodel
     private void logoutUser() {
+        finishAffinity();
         startActivity(new Intent(HomeActivity.this, MainActivity.class));
         homeViewModel.logout ();
         finish();

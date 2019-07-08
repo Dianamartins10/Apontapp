@@ -181,6 +181,7 @@ public class ProductsActivity extends AppCompatActivity {
     }
 
     private void logoutUser() {
+        finishAffinity();
         startActivity(new Intent(ProductsActivity.this, MainActivity.class));
         productsViewModel.logout ();
         finish();
@@ -193,7 +194,7 @@ public class ProductsActivity extends AppCompatActivity {
     private void addProductToList(){
         Log.d("", String.valueOf(productsAdapter.selectedproducts));
         finish();
-        
+
 
     }
 

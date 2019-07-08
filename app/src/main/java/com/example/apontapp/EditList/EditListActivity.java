@@ -100,6 +100,7 @@ public class EditListActivity extends AppCompatActivity {
     }
 
     private void logoutUser() {
+        finishAffinity();
         startActivity(new Intent(EditListActivity.this, MainActivity.class));
         editListViewModel.logout ();
         finish();

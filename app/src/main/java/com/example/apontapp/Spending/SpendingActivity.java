@@ -106,6 +106,7 @@ public class SpendingActivity extends AppCompatActivity {
     }
 
     private void logoutUser() {
+        finishAffinity();
         startActivity(new Intent(SpendingActivity.this, MainActivity.class));
         spendingViewModel.logout ();
         finish();
