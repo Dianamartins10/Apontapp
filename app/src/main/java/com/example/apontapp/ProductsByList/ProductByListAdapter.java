@@ -65,7 +65,21 @@ public class ProductByListAdapter extends RecyclerView.Adapter<ProductByListAdap
                 }
             }
         } );
+
+        holder.checkBox.setOnClickListener ( new View.OnClickListener () {
+            @Override
+            public void onClick(View v) {
+                if(holder.checkBox.isChecked ()){
+                    holder.checkBox.setChecked ( true );
+
+                }else{
+                    holder.checkBox.setChecked ( false );
+                }
+            }
+        } );
     }
+
+
 
     @Override
     public int getItemCount() {

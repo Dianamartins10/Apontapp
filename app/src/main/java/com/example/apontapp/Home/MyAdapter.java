@@ -3,17 +3,26 @@ package com.example.apontapp.Home;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.apontapp.EditList.EditListActivity;
 import com.example.apontapp.ProductsByList.ProductByListActivity;
 import com.example.apontapp.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
@@ -66,6 +75,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
         return vh;
     }
 
+    private FirebaseFirestore db;
     @Override
     public void onBindViewHolder( final ViewHolder holder, final int position){
 
@@ -107,6 +117,28 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
 
                                 case R.id.apagar:
 
+                                    db = FirebaseFirestore.getInstance ();
+
+
+                                    db.collection ( "lists" )
+                                            .get ()
+                                            .addOnCompleteListener ( new OnCompleteListener<QuerySnapshot>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
+                                                    if (task.isSuccessful ()) {
+                                                        for (QueryDocumentSnapshot document : task.getResult ()) {
+
+                                                            if (document.getString ( "listName" ).equals ( dataset.get(position) )) {
+                                                                DocumentReference lists = db.collection ( "lists" ).document ( document.getId () );
+                                                                lists.delete();
+                                                            }
+                                                        }
+                                                    } else {
+                                                        Log.d ( "", "Error getting documents: ", task.getException () );
+                                                    }
+                                                }
+                                            } );
 
                                     break;
                             }
