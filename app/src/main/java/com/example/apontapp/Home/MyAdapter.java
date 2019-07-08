@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.example.apontapp.EditList.EditListActivity;
 import com.example.apontapp.ProductsByList.ProductByListActivity;
 import com.example.apontapp.R;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 
 import java.util.ArrayList;
@@ -96,6 +97,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
                                 case R.id.editar:
                                     Intent intent = new Intent ( context, EditListActivity.class );
                                     intent.putExtra("name", dataset.get(position));
+
                                     context.startActivity ( intent );
                                     break;
 

@@ -13,12 +13,12 @@
         <activity android:name=".ResetPassword.ResetPasswordActivity" />
         <activity
             android:name=".ProductsByList.ProductByListActivity"
-            android:label="@string/title_activity_product_by_list"
+            android:label="Apontapp"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".EditList.EditListActivity" />
         <activity
             android:name=".Products.ProductsActivity"
-            android:label="@string/title_activity_products"
+            android:label="Apontapp"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".NewProduct.NewProductActivity" />
         <activity android:name=".NewList.NewListActivity" />

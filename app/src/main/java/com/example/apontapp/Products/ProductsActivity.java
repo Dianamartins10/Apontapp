@@ -1,5 +1,6 @@
 package com.example.apontapp.Products;
 
+import android.app.Activity;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
@@ -15,6 +16,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.apontapp.Home.HomeActivity;
@@ -33,6 +36,8 @@ public class ProductsActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManager;
     private ProductsViewModel productsViewModel=null;
     public Button addProductToList;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,6 +134,15 @@ public class ProductsActivity extends AppCompatActivity {
     }
 
     private void addProductToList(){
-
+        Intent intent = getIntent();
+        String name = intent.getStringExtra("name");
     }
+
+    public void itemClicked(View v) {
+        if (((CheckBox) v).isChecked()) {
+            Toast.makeText(ProductsActivity.this,
+                    "Checked", Toast.LENGTH_LONG).show();
+        }
+    }
+
 }

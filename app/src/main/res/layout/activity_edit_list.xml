@@ -27,7 +27,7 @@
         android:inputType="text" />
 
     <Button
-        android:id="@+id/btn_NewList"
+        android:id="@+id/btn_EditList"
         android:layout_width="199dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
