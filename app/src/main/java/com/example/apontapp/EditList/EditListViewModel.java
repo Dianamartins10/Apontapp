@@ -78,7 +78,7 @@ public class EditListViewModel extends ViewModel {
                                     if(document.getString("listName").equals(currentList)){
                                         DocumentReference lists = db.collection("lists").document(document.getId());
                                         lists.update(NAME_KEY, nameList);
-                                        
+
                                     }
                                 }
                             } else {

@@ -5,12 +5,14 @@ import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -23,10 +25,21 @@ import android.widget.Toast;
 import com.example.apontapp.Home.HomeActivity;
 import com.example.apontapp.Login.MainActivity;
 import com.example.apontapp.NewProduct.NewProductActivity;
+import com.example.apontapp.ProductsByList.ProductByListActivity;
 import com.example.apontapp.R;
 import com.example.apontapp.Spending.SpendingActivity;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class ProductsActivity extends AppCompatActivity {
 
@@ -96,7 +109,48 @@ public class ProductsActivity extends AppCompatActivity {
         addProductToList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 addProductToList();
+                final String message = ProductByListActivity.namelist;
+                Log.d("",message);
+
+                db = FirebaseFirestore.getInstance();
+                db.collection("lists")
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
+                                if (task.isSuccessful()) {
+                                    for (QueryDocumentSnapshot document : task.getResult()) {
+                                        //Log.d("", document.getId() + " => " + document.getString("listName"));
+
+                                        if(document.getString("listName").equals(message)){
+
+                                            DocumentReference lists = db.collection("lists").document(document.getId());
+                                            ArrayList<String> oldlist = (ArrayList<String>) document.get("products");
+                                            Log.d("", String.valueOf(oldlist));
+
+
+                                            for (Object x : oldlist){
+                                                if (!productsAdapter.selectedproducts.contains(x))
+                                                    productsAdapter.selectedproducts.add((String) x);
+                                                else{
+
+                                                }
+                                            }
+
+
+                                            lists.update(NAME_KEY, productsAdapter.selectedproducts);
+
+                                        }
+                                    }
+                                } else {
+                                    Log.d("", "Error getting documents: ", task.getException());
+                                }
+                            }
+                        });
+
             }
         });
 
@@ -133,9 +187,14 @@ public class ProductsActivity extends AppCompatActivity {
 
     }
 
+    private FirebaseFirestore db;
+    private static final String NAME_KEY = "products";
+
     private void addProductToList(){
-        Intent intent = getIntent();
-        String name = intent.getStringExtra("name");
+        Log.d("", String.valueOf(productsAdapter.selectedproducts));
+        finish();
+        
+
     }
 
     public void itemClicked(View v) {

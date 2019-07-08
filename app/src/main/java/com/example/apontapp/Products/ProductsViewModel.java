@@ -29,7 +29,6 @@ public class ProductsViewModel extends ViewModel {
     MutableLiveData<ArrayList<String>> category= new MutableLiveData<> ();
     MutableLiveData<ResultTypeListProd> logout = new MutableLiveData<> ();
 
-
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
     private String TAG ="";
