@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
+import com.example.apontapp.Home.HomeViewModel;
 import com.example.apontapp.Models.List;
 import com.example.apontapp.NewList.NewListViewModel;
 import com.example.apontapp.ProductsByList.ProductByListViewModel;
@@ -38,6 +39,7 @@ public class EditListViewModel extends ViewModel {
     MutableLiveData<EditListViewModel.ResultTypeList> logout = new MutableLiveData<> ();
     private FirebaseFirestore db;
 
+
     public EditListViewModel(){
         mAuth = FirebaseAuth.getInstance();
     }
@@ -47,6 +49,9 @@ public class EditListViewModel extends ViewModel {
         livedata.postValue ( EditListViewModel.ResultTypeList.LOGOUT );
     }
 
+
+    private static final String NAME_KEY = "listName";
+
     public void editList(final String nameList, final String currentList){
         mAuth= FirebaseAuth.getInstance();
 
@@ -55,30 +60,32 @@ public class EditListViewModel extends ViewModel {
         }else if (!nameList.isEmpty()) {
 
             livedata.postValue(EditListViewModel.ResultTypeList.SUCCESS);
+            db = FirebaseFirestore.getInstance();
 
 
-            /*
-            FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-            final DatabaseReference reference = firebaseDatabase.getReference();
-            Query query = reference.child("lists").orderByChild("listName").equalTo(currentList);
-            query.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    DataSnapshot nodeDataSnapshot = dataSnapshot.getChildren().iterator().next();
-                    String key = nodeDataSnapshot.getKey(); //
-                    String path = "/" + dataSnapshot.getKey() + "/" + key;
-                    HashMap<String, Object> result = new HashMap<>();
-                    result.put("listName", nameList);
-                    reference.child(path).updateChildren(result);
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
 
 
-                }
-            });
-            */
+            db.collection("lists")
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
+                            if (task.isSuccessful()) {
+                                for (QueryDocumentSnapshot document : task.getResult()) {
+                                    //Log.d("", document.getId() + " => " + document.getString("listName"));
+
+                                    if(document.getString("listName").equals(currentList)){
+                                        DocumentReference lists = db.collection("lists").document(document.getId());
+                                        lists.update(NAME_KEY, nameList);
+                                        
+                                    }
+                                }
+                            } else {
+                                Log.d("", "Error getting documents: ", task.getException());
+                            }
+                        }
+                    });
 
         }
     }

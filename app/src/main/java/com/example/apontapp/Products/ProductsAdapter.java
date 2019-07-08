@@ -79,6 +79,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
                 if(holder.checkBox.isChecked ()){
                     holder.checkBox.setChecked ( false );
                     holder.getAdapterPosition();
+                    Log.d("", String.valueOf(holder.getAdapterPosition()));
 
                 }else{
                     holder.checkBox.setChecked ( true );

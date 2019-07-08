@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.example.apontapp.EditList.EditListActivity;
 import com.example.apontapp.ProductsByList.ProductByListActivity;
 import com.example.apontapp.R;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 
