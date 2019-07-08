@@ -17,27 +17,31 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 public class EditListViewModel extends ViewModel {
 
+    //enum to send state to view
     enum ResultTypeList{
         SUCCESS, CHECKNAME, LOGOUT,ERROR
     }
 
-    private FirebaseAuth mAuth;
+
     MutableLiveData<EditListViewModel.ResultTypeList> livedata = new MutableLiveData<>();
     MutableLiveData<EditListViewModel.ResultTypeList> logout = new MutableLiveData<> ();
-    private FirebaseFirestore db;
 
+    //variables initialization
+    private FirebaseFirestore db;
+    private FirebaseAuth mAuth;
 
     public EditListViewModel(){
         mAuth = FirebaseAuth.getInstance();
     }
 
+    //logout method
     public void logout(){
         FirebaseAuth.getInstance().signOut();
         livedata.postValue ( EditListViewModel.ResultTypeList.LOGOUT );
     }
 
 
-
+    //name of list field on firebase
     private static final String NAME_KEY = "listName";
 
     public void editList(final String nameList, final String currentList) {
@@ -53,7 +57,7 @@ public class EditListViewModel extends ViewModel {
                 livedata.postValue ( EditListViewModel.ResultTypeList.SUCCESS );
                 db = FirebaseFirestore.getInstance ();
 
-
+                //get data from firestore and send to arraylist
                 db.collection ( "lists" )
                         .get ()
                         .addOnCompleteListener ( new OnCompleteListener<QuerySnapshot> () {
@@ -63,7 +67,6 @@ public class EditListViewModel extends ViewModel {
                                 if (task.isSuccessful ()) {
                                     for (QueryDocumentSnapshot document : task.getResult ()) {
                                         //Log.d("", document.getId() + " => " + document.getString("listName"));
-
 
                                         if (document.getString ( "listName" ).equals ( currentList )) {
                                             DocumentReference lists = db.collection ( "lists" ).document ( document.getId () );

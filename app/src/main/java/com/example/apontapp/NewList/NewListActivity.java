@@ -92,9 +92,12 @@ public class NewListActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
+    //method thats redirect to spending activity
     private void enterGastos() {
         startActivity(new Intent(NewListActivity.this, SpendingActivity.class));
     }
+
 
     private void logoutUser() {
         finishAffinity();

@@ -53,6 +53,7 @@ public class ProductByListViewModel extends ViewModel {
         mAuth= FirebaseAuth.getInstance();
 
         String user_id= mAuth.getUid ();
+        //name of current list
         String test = ProductByListActivity.namelist;
 
         name.setValue(new ArrayList<String>());

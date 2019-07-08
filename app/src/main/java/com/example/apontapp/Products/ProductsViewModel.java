@@ -59,7 +59,7 @@ public class ProductsViewModel extends ViewModel {
 
         db=FirebaseFirestore.getInstance ();
 
-
+        //products in firebase created by no user
         db.collection ( "products" ).whereEqualTo ("user_id","").get().addOnCompleteListener ( new OnCompleteListener<QuerySnapshot> () {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -80,6 +80,7 @@ public class ProductsViewModel extends ViewModel {
             }
         } );
 
+        //products in firebase that have been created by the user
         db.collection ( "products" ).whereEqualTo ("user_id",user_id).get().addOnCompleteListener ( new OnCompleteListener<QuerySnapshot> () {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {

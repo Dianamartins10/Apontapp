@@ -176,10 +176,12 @@ public class ProductsActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+    //method thats redirect to spending activity
     private void enterGastos() {
         startActivity(new Intent(ProductsActivity.this, SpendingActivity.class));
     }
 
+    //method that calls logout in viewmodel
     private void logoutUser() {
         finishAffinity();
         startActivity(new Intent(ProductsActivity.this, MainActivity.class));
@@ -191,6 +193,7 @@ public class ProductsActivity extends AppCompatActivity {
     private FirebaseFirestore db;
     private static final String NAME_KEY = "products";
 
+
     private void addProductToList(){
         Log.d("", String.valueOf(productsAdapter.selectedproducts));
         finish();
@@ -198,6 +201,7 @@ public class ProductsActivity extends AppCompatActivity {
 
     }
 
+    //method that shows a message whenever an item gets checked
     public void itemClicked(View v) {
         if (((CheckBox) v).isChecked()) {
             Toast.makeText(ProductsActivity.this,

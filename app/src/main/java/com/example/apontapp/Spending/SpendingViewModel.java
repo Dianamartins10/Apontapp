@@ -45,6 +45,8 @@ public class SpendingViewModel extends ViewModel {
         lista.setValue( new ArrayList<String>());
 
         db=FirebaseFirestore.getInstance ();
+
+        //list names that belong to authenticated user
         db.collection("lists").whereEqualTo ("user_id",user_id).get().addOnCompleteListener ( new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {

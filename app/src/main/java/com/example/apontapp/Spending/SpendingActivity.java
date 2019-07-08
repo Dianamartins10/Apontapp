@@ -27,6 +27,7 @@ import java.util.ArrayList;
 
 public class SpendingActivity extends AppCompatActivity {
 
+    //initialize variables
     private ArrayList<String> lista = new ArrayList<> ();
     private RecyclerView recyclerView;
     private MyAdapter adapter;
@@ -78,15 +79,17 @@ public class SpendingActivity extends AppCompatActivity {
     }
 
     public void list(){
-        //homeViewModel.home(lista);
+        //spendingViewModel.spending(lista);
     }
 
+    //creates options menu of topbar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main_menu, menu);
         return true;
     }
+    //redirect if click on items
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
@@ -101,10 +104,12 @@ public class SpendingActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+    //method thats redirect to spending activity
     private void enterGastos() {
         startActivity(new Intent(SpendingActivity.this, SpendingActivity.class));
     }
 
+    //method that calls logout in viewmodel
     private void logoutUser() {
         finishAffinity();
         startActivity(new Intent(SpendingActivity.this, MainActivity.class));

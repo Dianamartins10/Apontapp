@@ -24,6 +24,7 @@ import com.example.apontapp.Spending.SpendingActivity;
 
 public class EditListActivity extends AppCompatActivity {
 
+    //initialize variables
     public EditText nameList;
     public Button editList;
     private EditListViewModel editListViewModel = null;
@@ -35,6 +36,7 @@ public class EditListActivity extends AppCompatActivity {
 
         editListViewModel = ViewModelProviders.of(this).get(EditListViewModel.class);
 
+        //receive states of editListviewmodel of enum
         editListViewModel.livedata.observe ( this, new Observer<EditListViewModel.ResultTypeList>() {
             @Override
             public void onChanged(@Nullable EditListViewModel.ResultTypeList resultTypeList) {
@@ -58,9 +60,11 @@ public class EditListActivity extends AppCompatActivity {
 
         } );
 
+        //associates variables with xml
         editList= findViewById(R.id.btn_EditList);
         nameList= findViewById(R.id.editList);
 
+        //action when editList button is clicked
         editList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,6 +72,7 @@ public class EditListActivity extends AppCompatActivity {
             }
         });
     }
+    //get name from clicked list and new name for that list
     private void editList(){
         String name = nameList.getText().toString();
         Intent intent = getIntent();
@@ -75,16 +80,20 @@ public class EditListActivity extends AppCompatActivity {
         editListViewModel.editList (name,currentlist);
     }
 
+    //creates options menu of topbar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main_menu, menu);
         return true;
     }
+
+    //redirect if click on items
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
         switch (item.getItemId()) {
+            // Handle item selection
             case R.id.action_logout:
                 logoutUser();
                 return true;
@@ -95,10 +104,13 @@ public class EditListActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
+    //method thats redirect to spending activity
     private void enterGastos() {
         startActivity(new Intent(EditListActivity.this, SpendingActivity.class));
     }
 
+    //method that calls logout in viewmodel
     private void logoutUser() {
         finishAffinity();
         startActivity(new Intent(EditListActivity.this, MainActivity.class));

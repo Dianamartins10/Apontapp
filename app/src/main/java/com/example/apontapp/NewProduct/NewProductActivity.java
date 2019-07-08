@@ -63,6 +63,7 @@ public class NewProductActivity extends AppCompatActivity {
             }
         } );
 
+        //associates variables with xml
         createProduct = findViewById(R.id.btn_NewProduct);
         categoryProduct= findViewById(R.id.editNewProductCategory);
         nameProduct = findViewById(R.id.editNewProductName);
@@ -104,10 +105,13 @@ public class NewProductActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
+    //method thats redirect to spending activity
     private void enterGastos() {
         startActivity(new Intent(NewProductActivity.this, SpendingActivity.class));
     }
 
+    //method that calls logout in viewmodel
     private void logoutUser() {
         finishAffinity();
         startActivity(new Intent(NewProductActivity.this, MainActivity.class));

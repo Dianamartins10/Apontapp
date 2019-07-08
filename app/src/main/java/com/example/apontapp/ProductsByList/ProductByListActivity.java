@@ -93,12 +93,16 @@ public class ProductByListActivity extends AppCompatActivity {
 
 
     }
+
+    //creates options menu of topbar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main_menu, menu);
         return true;
     }
+
+    //redirect if click on items
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection

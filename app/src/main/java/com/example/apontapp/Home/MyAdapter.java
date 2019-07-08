@@ -111,15 +111,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
                                     Intent intent = new Intent ( context, EditListActivity.class );
                                     intent.putExtra("name", dataset.get(position));
                                     context.startActivity ( intent );
-
-
                                     break;
-
                                 case R.id.apagar:
 
                                     db = FirebaseFirestore.getInstance ();
-
-
                                     db.collection ( "lists" )
                                             .get ()
                                             .addOnCompleteListener ( new OnCompleteListener<QuerySnapshot>() {

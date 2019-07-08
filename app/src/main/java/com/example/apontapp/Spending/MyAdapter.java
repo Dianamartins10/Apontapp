@@ -3,6 +3,8 @@ package com.example.apontapp.Spending;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,6 +18,7 @@ import com.example.apontapp.ProductsByList.ProductByListActivity;
 import com.example.apontapp.R;
 
 import java.util.ArrayList;
+import java.util.stream.IntStream;
 
 public class MyAdapter extends RecyclerView.Adapter<com.example.apontapp.Spending.MyAdapter.ViewHolder> implements View.OnClickListener {
 
@@ -64,22 +67,42 @@ public class MyAdapter extends RecyclerView.Adapter<com.example.apontapp.Spendin
         return vh;
     }
 
-    @Override
+
+    ArrayList<Double> conta = new ArrayList<>();
+
     public void onBindViewHolder(final com.example.apontapp.Spending.MyAdapter.ViewHolder holder, final int position){
 
         holder.getAdapterPosition ();
         holder.textView.setText(dataset.get(position));
-        holder.textView.setOnClickListener ( new View.OnClickListener () {
+
+        holder.getAdapterPosition ();
+        holder.listprice.setOnClickListener ( new View.OnClickListener () {
             @Override
             public void onClick(View v) {
+
                 context = v.getContext ();
-                //Log.d ( TAG, dataset.get(position) );
-                Intent intent = new Intent ( context, ProductByListActivity.class );
-                context.startActivity ( intent );
+                /*
+                conta.clear();
 
+                for(int i =0; i<dataset.size();i++){
+                    if(String.valueOf(holder.listprice.getText()).equals(null) ||String.valueOf(holder.listprice.getText()).equals("")){
+                        conta.add(i, (double) 0);
+                    }
+
+                }
+
+                conta.set(holder.getAdapterPosition (),Double.valueOf(String.valueOf(holder.listprice.getText())));
+                double sum = 0;
+
+                for (double value : conta) {
+                    sum += value;
+                }
+                Log.d("", String.valueOf(conta));
+                Log.d("", String.valueOf(sum));
+                */
             }
-        } );
 
+        } );
 
 
     }
