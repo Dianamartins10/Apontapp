@@ -10,7 +10,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class ResetPasswordViewModel extends ViewModel {
-
+    //enum to send state to view
     enum ResultTypeReset{
         SUCCESS, ERROR, EMAILR
     }
@@ -24,6 +24,8 @@ public class ResetPasswordViewModel extends ViewModel {
         mAuth= FirebaseAuth.getInstance ();
     }
 
+
+    //method that reset password
     public void resetPass(final String email){
         if (email.isEmpty ()){
             livedata.postValue ( ResultTypeReset.EMAILR );

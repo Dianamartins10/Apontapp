@@ -49,6 +49,9 @@ public class EditListActivity extends AppCompatActivity {
                                 .show();
                         finish();
                         break;
+                    case ERROR:
+                        Toast.makeText(EditListActivity.this, "ERRO: Não foi possível editar o nome da sua lista!", Toast.LENGTH_LONG)
+                                .show();
 
                 }
             }

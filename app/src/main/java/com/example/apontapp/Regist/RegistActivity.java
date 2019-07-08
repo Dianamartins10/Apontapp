@@ -32,6 +32,7 @@ public class RegistActivity extends AppCompatActivity {
         registViewModel = ViewModelProviders.of(this).get(RegistViewModel.class);
 
 
+        //receive states of registviewmodel of enum
         registViewModel.liveData.observe(this, new Observer<RegistViewModel.ResultTypeRegist> () {
             @Override
             public void onChanged(RegistViewModel.ResultTypeRegist resultTypeRegist) {
@@ -70,6 +71,8 @@ public class RegistActivity extends AppCompatActivity {
         email= (EditText) findViewById(R.id.editEmail);
         password= (EditText) findViewById(R.id.editPass);
         passwordConfirm= (EditText) findViewById(R.id.editPassConfirm);
+
+        //action when btn of regist is clicked
         btn_Registar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,6 +82,7 @@ public class RegistActivity extends AppCompatActivity {
 
     }
 
+    //get text of inputs and calls viewmodel method
     private void startSignUp(){
         String emailR = email.getText().toString();
         String passwordR = password.getText().toString();

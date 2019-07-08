@@ -20,7 +20,7 @@ import com.example.apontapp.R;
 import com.example.apontapp.Spending.SpendingActivity;
 
 public class NewListActivity extends AppCompatActivity {
-
+    //initialize variables
     public EditText nameList;
     public Button createList;
     private NewListViewModel newListViewModel = null;
@@ -33,6 +33,7 @@ public class NewListActivity extends AppCompatActivity {
 
         newListViewModel = ViewModelProviders.of(this).get(NewListViewModel.class);
 
+        //receive states of loginviewmodel of enum
         newListViewModel.livedata.observe ( this, new Observer<NewListViewModel.ResultTypeList> () {
             @Override
             public void onChanged(@Nullable NewListViewModel.ResultTypeList resultTypeList) {
@@ -55,6 +56,8 @@ public class NewListActivity extends AppCompatActivity {
         createList= findViewById(R.id.btn_NewList);
         nameList= findViewById(R.id.editNewList);
 
+
+        //action when btn of new list is clicked
         createList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,6 +66,7 @@ public class NewListActivity extends AppCompatActivity {
         });
     }
 
+    //get text of inputs and calls viewmodel method
     private void createList(){
         String name = nameList.getText().toString();
         newListViewModel.createList (name);

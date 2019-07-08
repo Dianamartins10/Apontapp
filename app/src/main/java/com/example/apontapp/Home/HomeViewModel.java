@@ -13,15 +13,18 @@ import java.util.ArrayList;
 
 public class HomeViewModel extends ViewModel {
 
+    //enum to send state to view
     enum ResultTypeView {
         SUCCESS, ERROR, LOGOUT
     }
+
 
     MutableLiveData<ResultTypeView> livedata = new MutableLiveData<> ();
     MutableLiveData<ArrayList<String>> lista = new MutableLiveData<> ();
     MutableLiveData<ResultTypeView> logout = new MutableLiveData<> ();
 
 
+    //variables initialization
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
     private ArrayList<String> listaTemp = new ArrayList<> ();
@@ -30,6 +33,7 @@ public class HomeViewModel extends ViewModel {
 
     public HomeViewModel(){mAuth=FirebaseAuth.getInstance ();}
 
+    //logout method
     public void logout(){
         FirebaseAuth.getInstance().signOut();
         livedata.postValue ( ResultTypeView.LOGOUT );
@@ -43,6 +47,8 @@ public class HomeViewModel extends ViewModel {
         lista.setValue( new ArrayList<String>());
 
         db=FirebaseFirestore.getInstance ();
+
+        //get data from firestore and send to arraylist
         db.collection("lists").whereEqualTo ("user_id",user_id).get().addOnCompleteListener ( new OnCompleteListener<QuerySnapshot> () {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {

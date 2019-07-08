@@ -4,7 +4,6 @@ package com.example.apontapp.Home;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,9 +14,6 @@ import android.widget.TextView;
 import com.example.apontapp.EditList.EditListActivity;
 import com.example.apontapp.ProductsByList.ProductByListActivity;
 import com.example.apontapp.R;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
-
 
 import java.util.ArrayList;
 
@@ -30,6 +26,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
     @Override
     public void onClick(View v) {
 
+    }
+    public void updateDataset(ArrayList<String> newData) {
+        dataset = newData;
+        notifyDataSetChanged ();
     }
 
 
@@ -88,6 +88,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
             @Override
             public void onClick(View view) {
                 context = view.getContext ();
+
+                //add popup menu by list edit + delete
                 PopupMenu popup = new PopupMenu ( context, holder.buttonViewOption );
                 popup.inflate ( R.menu.options_menu );
                 popup.setOnMenuItemClickListener ( new PopupMenu.OnMenuItemClickListener () {
@@ -98,8 +100,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
                                 case R.id.editar:
                                     Intent intent = new Intent ( context, EditListActivity.class );
                                     intent.putExtra("name", dataset.get(position));
-
                                     context.startActivity ( intent );
+
+
                                     break;
 
                                 case R.id.apagar:
@@ -121,8 +124,5 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
         return dataset.size();
     }
 
-    public void updateDataset(ArrayList<String> newData) {
-        dataset = newData;
-        notifyDataSetChanged ();
-    }
+
 }

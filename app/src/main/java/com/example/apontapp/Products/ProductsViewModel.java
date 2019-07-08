@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.arch.lifecycle.ViewModel;
 import android.util.Log;
 
+import com.example.apontapp.Home.MyAdapter;
 import com.example.apontapp.Models.Product;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -20,14 +21,21 @@ import java.util.ArrayList;
 
 
 public class ProductsViewModel extends ViewModel {
+
+    //enum to pass to producst activity
     enum ResultTypeListProd{
         SUCCESS, ERROR, LOGOUT
     }
 
     MutableLiveData<ResultTypeListProd> livedata = new MutableLiveData<>();
     MutableLiveData<ArrayList<String>> name = new MutableLiveData<> ();
-    MutableLiveData<ArrayList<String>> category= new MutableLiveData<> ();
-    MutableLiveData<ResultTypeListProd> logout = new MutableLiveData<> ();
+
+
+
+    ProductsAdapter adapter = null;
+
+
+
 
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
@@ -91,6 +99,8 @@ public class ProductsViewModel extends ViewModel {
                 }
             }
         } );
+
+
 
     }
 

@@ -32,6 +32,7 @@ public class NewProductActivity extends AppCompatActivity {
         setContentView ( R.layout.activity_new_product );
 
         newProductViewModel = ViewModelProviders.of(this).get(NewProductViewModel.class);
+        //receive states of newproductviewmodel of enum
         newProductViewModel.livedata.observe ( this, new Observer<NewProductViewModel.ResultTypeProduct> () {
             @Override
             public void onChanged(@Nullable NewProductViewModel.ResultTypeProduct resultTypeProduct) {
@@ -66,6 +67,7 @@ public class NewProductActivity extends AppCompatActivity {
         categoryProduct= findViewById(R.id.editNewProductCategory);
         nameProduct = findViewById(R.id.editNewProductName);
 
+        //action when btn of add product is clicked
         createProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,6 +77,7 @@ public class NewProductActivity extends AppCompatActivity {
 
     }
 
+    //get text of inputs and calls viewmodel method
     private void createProduct(){
         String name = nameProduct.getText().toString();
         String category = categoryProduct.getText().toString();

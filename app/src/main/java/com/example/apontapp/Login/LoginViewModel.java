@@ -11,7 +11,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class LoginViewModel extends ViewModel {
-
+    //enum to send state to view
     enum ResultType {
         SUCCESS, ERROR, CHECKBOTH, CHECKEMAIL, CHECKPASS
     }
@@ -22,6 +22,7 @@ public class LoginViewModel extends ViewModel {
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
 
+    //method thats verify current user
     public LoginViewModel() {
         mAuth = FirebaseAuth.getInstance();
 
@@ -39,6 +40,7 @@ public class LoginViewModel extends ViewModel {
 
     }
 
+    //method of login and input verifications
     public void login(String email, String password){
         if (email.isEmpty() && password.isEmpty()) {
             liveData.postValue(ResultType.CHECKBOTH);

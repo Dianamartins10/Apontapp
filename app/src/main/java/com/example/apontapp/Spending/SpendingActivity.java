@@ -12,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.Toast;
 
 
@@ -31,6 +32,7 @@ public class SpendingActivity extends AppCompatActivity {
     private MyAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private SpendingViewModel spendingViewModel=null;
+    private Button calculate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +47,7 @@ public class SpendingActivity extends AppCompatActivity {
         adapter = new com.example.apontapp.Spending.MyAdapter(lista);
         recyclerView.setAdapter ( adapter );
 
+        calculate = findViewById ( R.id.buttonSpending );
 
         spendingViewModel = ViewModelProviders.of(this).get (SpendingViewModel.class);
 

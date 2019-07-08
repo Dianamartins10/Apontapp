@@ -12,13 +12,10 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.Objects;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 public class RegistViewModel extends ViewModel {
 
+    //enum to send state to view
     enum ResultTypeRegist {
         SUCCESS, ERROR, CHECKBOTH, COMPARE, VALIDEMAIL, EXISTEMAIL, CHECKPASSLENGT
     }
@@ -33,6 +30,7 @@ public class RegistViewModel extends ViewModel {
         mAuth=FirebaseAuth.getInstance();
     }
 
+    //method of registation and input verifications
     public void regist(final String username, final String password, final String passwordConfirm, final  String email){
 
         mAuth= FirebaseAuth.getInstance();
@@ -58,6 +56,7 @@ public class RegistViewModel extends ViewModel {
                                     //create user in table of users
                                     db = FirebaseFirestore.getInstance();
 
+                                    //creation of new document in firestore with user data
                                     DocumentReference newUser = db.collection("users").document(mAuth.getCurrentUser().getUid());
 
                                     User user = new User(username,email);

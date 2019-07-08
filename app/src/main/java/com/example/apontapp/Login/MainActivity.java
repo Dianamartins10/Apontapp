@@ -21,6 +21,7 @@ import com.example.apontapp.ResetPassword.ResetPasswordActivity;
 
 public class MainActivity extends AppCompatActivity {
 
+    //initialize variables
     private EditText email;
     private EditText password;
     private Button btn_login;
@@ -37,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
 
         loginViewModel = ViewModelProviders.of(this).get(LoginViewModel.class);
 
+
+        //receive states of loginviewmodel of enum
         loginViewModel.liveData.observe(this, new Observer<LoginViewModel.ResultType>() {
             @Override
             public void onChanged(@Nullable LoginViewModel.ResultType resultType) {
@@ -73,6 +76,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+        //associates variables with xml
         email = findViewById(R.id.editemail);
         password = findViewById(R.id.editpwd);
         btn_login = findViewById(R.id.btn_Login);
@@ -80,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
         resetPassword= findViewById ( R.id.resetPassword );
 
 
+        //action when resetPassword textview is clicked
         resetPassword.setOnClickListener ( new View.OnClickListener () {
             @Override
             public void onClick(View v) {
@@ -89,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
         } );
 
 
+        //action when btn of login is clicked
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+        //action when btn of regist is clicked
         btn_regist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -106,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    //get text of inputs and calls viewmodel method
     private void startSignIn(){
         String emailN= email.getText().toString();
         String passwordN= password.getText().toString();

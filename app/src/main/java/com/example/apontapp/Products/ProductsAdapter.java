@@ -27,12 +27,15 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
     private ArrayList<String> datasetprod;
     private Context context;
 
+
+
     public static class ViewHolder extends RecyclerView.ViewHolder{
         public TextView textViewName;
         public TextView buttonAdd;
         public CheckBox checkBox;
 
         //public Button addProductToList;
+
 
 
 
@@ -84,7 +87,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
         holder.getAdapterPosition ();
 
         holder.textViewName.setText ( datasetprod.get(position));
-        //Log.d("",datasetprod.get(position));
+
         holder.textViewName.setOnClickListener ( new View.OnClickListener () {
             @Override
             public void onClick(View v) {

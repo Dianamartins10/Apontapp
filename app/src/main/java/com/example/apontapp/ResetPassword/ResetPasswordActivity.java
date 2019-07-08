@@ -28,6 +28,8 @@ public class ResetPasswordActivity extends AppCompatActivity {
 
         resetPasswordViewModel = ViewModelProviders.of ( this ).get ( ResetPasswordViewModel.class );
 
+
+        //receive states of resetpasswordviewmodel of enum
         resetPasswordViewModel.livedata.observe ( this, new Observer<ResetPasswordViewModel.ResultTypeReset> () {
             @Override
             public void onChanged(@Nullable ResetPasswordViewModel.ResultTypeReset resultTypeReset) {
@@ -59,6 +61,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
         } );
     }
 
+    //get text of inputs and calls viewmodel method
     public void reset(){
         String emailT = email.getText ().toString ();
         resetPasswordViewModel.resetPass ( emailT );

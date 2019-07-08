@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 public class NewListViewModel extends ViewModel {
 
+    //enum to send state to view
     enum ResultTypeList{
         SUCCESS, CHECKNAME, LOGOUT
     }
@@ -31,6 +32,7 @@ public class NewListViewModel extends ViewModel {
     }
 
 
+    //method thats create a new list based in list Model
     public void createList(final String nameList){
         mAuth= FirebaseAuth.getInstance();
 
@@ -47,11 +49,10 @@ public class NewListViewModel extends ViewModel {
             final ArrayList<String> products;
             products = new ArrayList<>();
 
-
             List list = new List(user_id, nameList, products);
 
-            newList.set(list);
-        }
+        newList.set(list);
+    }
     }
 
 }

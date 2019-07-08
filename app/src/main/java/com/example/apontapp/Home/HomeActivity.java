@@ -15,14 +15,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
-
 import com.example.apontapp.Login.MainActivity;
 import com.example.apontapp.NewList.NewListActivity;
 import com.example.apontapp.R;
 import com.example.apontapp.Spending.SpendingActivity;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
+
 
 
 import java.util.ArrayList;
@@ -31,6 +29,9 @@ import java.util.ArrayList;
 
 public class HomeActivity extends AppCompatActivity {
 
+
+
+    //initialize variables
     private ArrayList<String> lista = new ArrayList<> ();
     private RecyclerView recyclerView;
     private MyAdapter adapter;
@@ -45,6 +46,9 @@ public class HomeActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
+
+
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,17 +58,18 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        //initialize recycler view
         recyclerView = findViewById ( R.id.recyclerview );
         recyclerView.setHasFixedSize ( true );
         layoutManager = new LinearLayoutManager ( this );
         recyclerView.setLayoutManager ( layoutManager );
-
         adapter = new MyAdapter(lista);
         recyclerView.setAdapter ( adapter );
 
 
         homeViewModel = ViewModelProviders.of(this).get (HomeViewModel.class);
 
+        //cals home method from homeviewmodel
         homeViewModel.home ();
 
 
@@ -84,6 +89,7 @@ public class HomeActivity extends AppCompatActivity {
             }
         } );
 
+        //method that update data to show
         homeViewModel.lista.observe ( this, new Observer<ArrayList<String>> () {
             @Override
             public void onChanged(@Nullable ArrayList<String> strings) {
@@ -98,12 +104,14 @@ public class HomeActivity extends AppCompatActivity {
         //homeViewModel.home(lista);
     }
 
+    //creates options menu of topbar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main_menu, menu);
         return true;
     }
+    //redirect if click on items
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
@@ -118,13 +126,14 @@ public class HomeActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+    //method thats redirect to spending activity
     private void enterGastos() {
         startActivity(new Intent(HomeActivity.this, SpendingActivity.class));
     }
 
+    //method that calls logout in viewmodel
     private void logoutUser() {
         startActivity(new Intent(HomeActivity.this, MainActivity.class));
-
         homeViewModel.logout ();
         finish();
 
